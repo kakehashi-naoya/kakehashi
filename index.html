@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAKEHASHI｜持続化補助金 申請サポート専門</title>
+  <style>
+    :root {
+      --blue-dark: #0d2b6b;
+      --blue-mid: #1a4fa8;
+      --blue-light: #3a8fe8;
+      --blue-pale: #e8f2fd;
+      --gold: #c9a227;
+      --gray: #5a5a6e;
+      --light: #f7f9fc;
+      --white: #ffffff;
+      --text: #1a1a2e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── ナビ ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(13, 43, 107, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    nav ul a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color .2s;
+    }
+
+    nav ul a:hover { color: #7ec8f4; }
+
+    .nav-cta {
+      background: var(--gold);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 700 !important;
+      transition: opacity .2s !important;
+    }
+
+    .nav-cta:hover { opacity: .85; }
+
+    /* ── ヒーロー ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #071a4a 0%, #0d3580 50%, #1a6ec7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 60% 40%, rgba(58,143,232,0.25) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 860px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201, 162, 39, 0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      padding: 6px 22px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .accent {
+      color: #7ec8f4;
+      display: block;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.1rem;
+      margin-bottom: 44px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(201,162,39,0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,162,39,0.6);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.6);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: background .2s;
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat .num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+
+    .stat .num span { font-size: 1.2rem; color: #7ec8f4; }
+
+    .stat .label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.4);
+      border-bottom: 2px solid rgba(255,255,255,0.4);
+      transform: rotate(45deg);
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(4px); }
+    }
+
+    /* ── 共通セクション ── */
+    section { padding: 90px 20px; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 4px;
+      color: var(--blue-light);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: var(--blue-dark);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--gray);
+      max-width: 580px;
+      margin: 0 auto 56px;
+      font-size: 0.96rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── 課題セクション ── */
+    #problem { background: var(--light); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .problem-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px 28px;
+      border-left: 4px solid var(--blue-light);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .problem-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .problem-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .problem-arrow {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--blue-light);
+      margin-bottom: 24px;
+    }
+
+    .problem-solution {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .problem-solution h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .problem-solution p {
+      opacity: 0.85;
+      font-size: 0.96rem;
+    }
+
+    /* ── 補助金説明 ── */
+    #subsidy { background: white; }
+
+    .subsidy-box {
+      background: var(--blue-pale);
+      border-radius: 16px;
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .subsidy-box h3 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--blue-dark);
+      margin-bottom: 16px;
+    }
+
+    .subsidy-box p {
+      color: var(--gray);
+      font-size: 0.93rem;
+    }
+
+    .subsidy-numbers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .subsidy-num {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .subsidy-num .big {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blue-mid);
+      line-height: 1;
+    }
+
+    .subsidy-num .big small {
+      font-size: 1rem;
+    }
+
+    .subsidy-num .small {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .target-industry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .industry-card {
+      border: 2px solid #e0e8f5;
+      border-radius: 12px;
+      padding: 32px 20px;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .industry-card:hover {
+      border-color: var(--blue-light);
+      transform: translateY(-4px);
+    }
+
+    .industry-card .emoji { font-size: 2.8rem; margin-bottom: 12px; }
+
+    .industry-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .industry-card p {
+      font-size: 0.83rem;
+      color: var(--gray);
+    }
+
+    .industry-card .tag {
+      display: inline-block;
+      background: var(--blue-pale);
+      color: var(--blue-mid);
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+
+    /* ── サービスフロー ── */
+    #flow { background: var(--light); }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      width: 2px;
+      height: calc(100% - 40px);
+      background: linear-gradient(to bottom, var(--blue-light), transparent);
+    }
+
+    .flow-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(26,79,168,0.35);
+      z-index: 1;
+      position: relative;
+    }
+
+    .flow-num span {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .flow-content {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .flow-content h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .flow-content p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .flow-content .who {
+      display: inline-block;
+      background: var(--blue-pale);
+      color: var(--blue-mid);
+      font-size: 0.75rem;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    /* ── 強み ── */
+    #strength { background: white; }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .strength-card {
+      border-radius: 16px;
+      padding: 36px 28px;
+      background: linear-gradient(135deg, #f0f6ff, #e8f2fd);
+      border: 1px solid #d0e4f8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strength-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(58,143,232,0.15), transparent);
+    }
+
+    .strength-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(26,79,168,0.12);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .strength-card h3 {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+    }
+
+    .strength-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ── 料金 ── */
+    #price {
+      background: linear-gradient(135deg, #071a4a 0%, #0d3580 100%);
+      color: white;
+    }
+
+    #price .section-title { color: white; }
+    #price .section-desc { color: rgba(255,255,255,0.7); }
+    #price .section-label { color: #7ec8f4; }
+
+    .price-box {
+      max-width: 720px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 52px 48px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .price-main {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .price-sub {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    .price-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .price-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .price-point .check {
+      color: #7ec8f4;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+    }
+
+    /* ── FAQ ── */
+    #faq { background: var(--light); }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-q .q-label {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--blue-mid);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .faq-q h3 {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      flex: 1;
+    }
+
+    .faq-a {
+      padding: 0 28px 24px 28px;
+      font-size: 0.88rem;
+      color: var(--gray);
+      padding-left: 70px;
+    }
+
+    /* ── CTA ── */
+    #contact { background: white; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto 48px;
+    }
+
+    .contact-card {
+      border: 2px solid #e0e8f5;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--blue-light);
+      transform: translateY(-4px);
+    }
+
+    .contact-card .icon { font-size: 2.4rem; margin-bottom: 12px; }
+
+    .contact-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+    }
+
+    .contact-card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .contact-card .contact-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--blue-mid);
+      word-break: break-all;
+    }
+
+    /* フォーム */
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--light);
+      border-radius: 20px;
+      padding: 48px 40px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+    }
+
+    .form-group .req {
+      color: #e05a5a;
+      margin-left: 4px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 2px solid #dce7f5;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.93rem;
+      font-family: inherit;
+      transition: border-color .2s;
+      background: white;
+      color: var(--text);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue-light);
+    }
+
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    .form-submit {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 18px 60px;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: 2px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(201,162,39,0.45);
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,162,39,0.55);
+    }
+
+    /* ── フッター ── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 36px 20px;
+    }
+
+    footer .footer-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    footer .footer-info {
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+
+    footer .copy {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav { padding: 12px 20px; }
+
+      .subsidy-box { grid-template-columns: 1fr; gap: 28px; }
+      .target-industry { grid-template-columns: 1fr; }
+      .price-points { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+      .contact-form { padding: 32px 24px; }
+      .price-box { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="logo"><img src="KAKEHASHI.png" alt="KAKEHASHI" style="height:42px; filter:brightness(0) invert(1);"></div>
+  <ul>
+    <li><a href="#subsidy">補助金とは</a></li>
+    <li><a href="#flow">サービスの流れ</a></li>
+    <li><a href="#strength">強み</a></li>
+    <li><a href="#price">料金</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+    <li><a href="#contact" class="nav-cta">無料相談</a></li>
+  </ul>
+</nav>
+
+<!-- ヒーロー -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">持続化補助金 申請サポート専門</div>
+    <h1 class="hero-title">
+      申請手続きはすべて<br>
+      <span class="accent">お任せください。</span>
+    </h1>
+    <p class="hero-sub">
+      小規模事業者持続化補助金で、広告・ホームページ・設備投資の費用を<br>
+      最大<strong style="color:#7ec8f4;">3分の2</strong>を国が負担。行政書士と連携し、ご相談から申請まで一貫対応します。
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">無料相談はこちら</a>
+      <a href="#flow" class="btn-outline">サービスの流れを見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="num">2/3<span>補助</span></div>
+        <div class="label">対象経費の国負担割合</div>
+      </div>
+      <div class="stat">
+        <div class="num">200<span>万円</span></div>
+        <div class="label">最大補助上限額</div>
+      </div>
+      <div class="stat">
+        <div class="num">60<span>〜70%</span></div>
+        <div class="label">持続化補助金の採択率目安</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL<div class="scroll-arrow"></div></div>
+</section>
+
+<!-- 課題 -->
+<section id="problem">
+  <div class="container">
+    <div class="section-label">PROBLEM</div>
+    <h2 class="section-title">こんなお悩みはありませんか？</h2>
+    <p class="section-desc">補助金の存在は知っていても、申請の複雑さから諦めてしまう事業者様が多くいらっしゃいます。</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">📄</div>
+        <h3>書類が多くて何から手をつけていいかわからない</h3>
+        <p>事業計画書・各種証明書など、準備する資料が多く、本業の合間では対応しきれない。</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🕐</div>
+        <h3>補助金を調べる時間がない</h3>
+        <p>どの補助金が自社に使えるのか、締切はいつなのか、調べるだけでも時間がかかる。</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">❓</div>
+        <h3>申請したことがなく、失敗が怖い</h3>
+        <p>不採択になったら時間と費用が無駄になると思い、なかなか一歩が踏み出せない。</p>
+      </div>
+    </div>
+    <div class="problem-arrow">↓</div>
+    <div class="problem-solution">
+      <h3>KAKEHASHIが、すべて解決します。</h3>
+      <p>お問い合わせから申請まで、専門家チームが一貫してサポート。<br>事業主様は本業に集中していただくだけで大丈夫です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 補助金とは -->
+<section id="subsidy">
+  <div class="container">
+    <div class="section-label">ABOUT</div>
+    <h2 class="section-title">小規模事業者持続化補助金とは</h2>
+    <p class="section-desc">中小企業庁が実施する補助制度。販路開拓や業務改善の取組みにかかる費用を国が補助します。</p>
+
+    <div class="subsidy-box">
+      <div>
+        <h3>返済不要の"もらえる"補助金</h3>
+        <p>融資や借入と違い、採択されて事業を実施すれば返済義務なし。広告費・ホームページ制作・設備費など、販路拡大にかかる経費の2/3を国が負担します。年に複数回公募があるため、タイミングを逃さない申請が重要です。</p>
+      </div>
+      <div class="subsidy-numbers">
+        <div class="subsidy-num">
+          <div class="big">2/3</div>
+          <div class="small">補助率</div>
+        </div>
+        <div class="subsidy-num">
+          <div class="big">200<small>万</small></div>
+          <div class="small">最大補助額</div>
+        </div>
+        <div class="subsidy-num">
+          <div class="big">60<small>〜70%</small></div>
+          <div class="small">採択率目安</div>
+        </div>
+        <div class="subsidy-num">
+          <div class="big">年<small>3〜4</small>回</div>
+          <div class="small">公募回数</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">TARGET</div>
+    <h2 class="section-title" style="margin-bottom:40px;">こんな事業者様が対象です</h2>
+    <div class="target-industry">
+      <div class="industry-card">
+        <div class="emoji">🍜</div>
+        <h3>飲食店</h3>
+        <p>ホームページ・SNS広告・チラシ制作など集客施策に活用できます。テイクアウト導入の設備費も対象に。</p>
+        <div class="tag">従業員5名以下</div>
+      </div>
+      <div class="industry-card">
+        <div class="emoji">🔨</div>
+        <h3>工務店・建設業</h3>
+        <p>施工事例サイトの制作や営業ツールの整備に。職人の技術を広く発信するデジタル化費用に対応。</p>
+        <div class="tag">従業員20名以下</div>
+      </div>
+      <div class="industry-card">
+        <div class="emoji">🏥</div>
+        <h3>クリニック・整体院</h3>
+        <p>予約システム導入・ホームページリニューアル・地域向け広告費。新規患者獲得の取組みに活用できます。</p>
+        <div class="tag">従業員5名以下</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フロー -->
+<section id="flow">
+  <div class="container">
+    <div class="section-label">FLOW</div>
+    <h2 class="section-title">サービスの流れ</h2>
+    <p class="section-desc">お問い合わせから採択まで、すべてKAKEHASHIと提携行政書士が一貫サポートします。</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1<span>STEP</span></div>
+        <div class="flow-content">
+          <div class="who">担当：KAKEHASHI</div>
+          <h3>無料相談・ヒアリング</h3>
+          <p>お電話・メール・Webフォームからお問い合わせください。事業内容や活用したい経費についてヒアリングし、補助金の適用可否を確認します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2<span>STEP</span></div>
+        <div class="flow-content">
+          <div class="who">担当：KAKEHASHI + 行政書士</div>
+          <h3>補助金のご提案・申請計画策定</h3>
+          <p>お客様の事業に最適な補助金の枠（通常枠・特別枠など）と申請スケジュールをご提案。事業計画の方向性を一緒に決めます。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3<span>STEP</span></div>
+        <div class="flow-content">
+          <div class="who">担当：行政書士</div>
+          <h3>申請書類の作成</h3>
+          <p>事業計画書・経費明細書など必要書類を提携行政書士が作成。商工会議所との調整・事業支援計画書の取得も代行します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4<span>STEP</span></div>
+        <div class="flow-content">
+          <div class="who">担当：行政書士</div>
+          <h3>申請・審査</h3>
+          <p>電子申請システムを通じて提出。審査期間（約2〜3ヶ月）中もご質問に随時対応します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5<span>STEP</span></div>
+        <div class="flow-content">
+          <div class="who">担当：KAKEHASHI + 行政書士</div>
+          <h3>採択通知・事業実施サポート</h3>
+          <p>採択後の実績報告書の作成・提出もサポート。補助金の入金まで安心してお任せください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 強み -->
+<section id="strength">
+  <div class="container">
+    <div class="section-label">STRENGTH</div>
+    <h2 class="section-title">KAKEHASHIが選ばれる理由</h2>
+    <p class="section-desc">窓口から申請まで一貫対応。事業主様の手間を最小限にします。</p>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <div class="strength-num">01</div>
+        <h3>相談〜申請まで完全一貫サポート</h3>
+        <p>ヒアリング・計画策定・書類作成・申請・実績報告まで、ワンストップで対応。複数の窓口をたらい回しにされる心配がありません。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">02</div>
+        <h3>行政書士と連携した安心の体制</h3>
+        <p>書類作成・申請業務は提携行政書士が担当。法的に適正な手続きで確実に申請します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">03</div>
+        <h3>完全成功報酬型・初期費用ゼロ</h3>
+        <p>採択されて補助金が入金されたタイミングでのみ費用が発生します。不採択の場合は費用は一切かかりません。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">04</div>
+        <h3>飲食・工務店・クリニックに精通</h3>
+        <p>各業種の特性を踏まえた事業計画書の作成が可能。業種に合った採択率の高い申請内容をご提案します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">05</div>
+        <h3>わかりやすい説明と丁寧な対応</h3>
+        <p>補助金の仕組みから申請の進捗状況まで、専門用語を使わずわかりやすくご説明します。初めての方も安心です。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">06</div>
+        <h3>オンライン対応でエリア不問</h3>
+        <p>宮城県内はもちろん、オンライン会議・メール・電話での対応も可能。お気軽にご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section id="price">
+  <div class="container">
+    <div class="section-label">PRICE</div>
+    <h2 class="section-title">料金体系</h2>
+    <p class="section-desc">採択・入金後のみ費用が発生する完全成功報酬型。リスクゼロでお試しいただけます。</p>
+
+    <div class="price-box">
+      <div class="price-main">完全成功報酬型</div>
+      <div class="price-sub">初期費用・相談料・着手金：すべて無料</div>
+
+      <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-bottom:32px;">
+        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:14px; padding:24px 36px; text-align:center;">
+          <div style="font-size:0.75rem; letter-spacing:2px; color:rgba(255,255,255,0.6); margin-bottom:6px;">成功報酬</div>
+          <div style="font-size:2.6rem; font-weight:900; color:var(--gold); line-height:1;">15<span style="font-size:1.2rem;">%</span></div>
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.7); margin-top:4px;">補助金入金額に対して</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(201,162,39,0.4); border-radius:14px; padding:24px 36px; text-align:center;">
+          <div style="font-size:0.75rem; letter-spacing:2px; color:rgba(255,255,255,0.6); margin-bottom:6px;">不採択の場合</div>
+          <div style="font-size:2.6rem; font-weight:900; color:#7ec8f4; line-height:1;">¥0</div>
+          <div style="font-size:0.8rem; color:rgba(255,255,255,0.7); margin-top:4px;">費用は一切かかりません</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(201,162,39,0.12); border:1px solid rgba(201,162,39,0.3); border-radius:10px; padding:16px 20px; margin-bottom:28px; text-align:left;">
+        <div style="font-size:0.82rem; color:var(--gold); font-weight:700; margin-bottom:4px;">なぜ成功報酬型なのか？</div>
+        <div style="font-size:0.84rem; color:rgba(255,255,255,0.8); line-height:1.7;">
+          補助金の採択率は約60〜70%。不採択のリスクをお客様だけに負わせたくない。<br>
+          だからKAKEHASHIは、採択・入金が確認できたときに初めて報酬をいただきます。<br>
+          お客様と同じ方向を向いて、採択に全力を尽くすためのモデルです。
+        </div>
+      </div>
+
+      <div class="price-points">
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>初回相談・ヒアリング 無料</span>
+        </div>
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>書類作成・申請代行 無料</span>
+        </div>
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>不採択の場合 費用ゼロ</span>
+        </div>
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>補助金入金確認後にお支払い</span>
+        </div>
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>実績報告書の作成サポート込み</span>
+        </div>
+        <div class="price-point">
+          <span class="check">✓</span>
+          <span>採択後のアフターフォロー有</span>
+        </div>
+      </div>
+      <div class="price-note">
+        ※成功報酬は補助金入金額の15%です。例：補助金200万円入金 → 報酬30万円<br>
+        ※着手金・相談料は一切いただきません。まずはお気軽にご相談ください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">よくある質問</h2>
+    <p class="section-desc">お客様からよくいただくご質問をまとめました。</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>補助金をもらったことがないのですが大丈夫ですか？</h3>
+        </div>
+        <div class="faq-a">はい、問題ありません。初めて申請される方が大半です。ヒアリングから丁寧にご説明しますので、安心してお任せください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>開業したばかりでも申請できますか？</h3>
+        </div>
+        <div class="faq-a">開業届を提出していれば申請可能です。ただし、事業の実績・具体性が審査に影響するため、事業計画の内容が重要です。詳しくはご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>採択されるまでどのくらい時間がかかりますか？</h3>
+        </div>
+        <div class="faq-a">申請締切から採択通知まで約2〜3ヶ月が目安です。採択後、事業を実施して実績報告を提出してから補助金が入金されます。総じて申請から入金まで8〜12ヶ月程度を見込んでください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>不採択になった場合、費用はかかりますか？</h3>
+        </div>
+        <div class="faq-a">一切かかりません。KAKEHASHIは完全成功報酬型のため、採択・入金が確認できた時点でのみお支払いいただきます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>宮城県外でも対応してもらえますか？</h3>
+        </div>
+        <div class="faq-a">オンライン（Zoom・電話・メール）でご対応できますので、全国からご相談いただけます。お気軽にお問い合わせください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>どんな経費が補助対象になりますか？</h3>
+        </div>
+        <div class="faq-a">広告費・ホームページ制作費・チラシ印刷費・展示会出展費・設備費など、販路開拓・業務改善につながる幅広い経費が対象です。詳細は補助金の公募要領や無料相談でご確認いただけます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">CONTACT</div>
+    <h2 class="section-title">まずは無料相談から</h2>
+    <p class="section-desc">「うちは対象になるの？」という質問だけでも大歓迎です。お気軽にご連絡ください。</p>
+
+    <div class="contact-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width:1000px;">
+      <div class="contact-card" style="border-color:#06c755;">
+        <div class="icon">💬</div>
+        <h3 style="color:#06c755;">LINEでのご相談</h3>
+        <p>一番気軽に相談できます</p>
+        <a href="https://line.me/R/ti/p/@550xodbg" target="_blank" style="display:inline-block; background:#06c755; color:white; font-weight:800; padding:10px 28px; border-radius:6px; text-decoration:none; margin-bottom:16px; font-size:0.95rem;">友だち追加する</a>
+        <div>
+          <img src="https://qr-official.line.me/gs/M_550xodbg_GW.png?oat_content=qr" alt="LINE QRコード" style="width:110px; height:110px; border-radius:8px; border:1px solid #e0e8f5;">
+          <div style="font-size:0.75rem; color:var(--gray); margin-top:6px;">QRコードを読み取る</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📞</div>
+        <h3>お電話でのご相談</h3>
+        <p>平日9:00〜18:00 受付</p>
+        <div class="contact-val">080-6975-8111</div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📧</div>
+        <h3>メールでのご相談</h3>
+        <p>24時間受付・2営業日以内に返信</p>
+        <div class="contact-val">sales.agency1001@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="text-align:center; font-size:1.2rem; font-weight:800; color:var(--blue-dark); margin-bottom:28px;">Webフォームから相談する</h3>
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label>お名前<span class="req">*</span></label>
+            <input type="text" placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>会社名・屋号</label>
+            <input type="text" placeholder="○○食堂">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>電話番号<span class="req">*</span></label>
+            <input type="tel" placeholder="080-0000-0000">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="req">*</span></label>
+            <input type="email" placeholder="example@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>業種</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>飲食店</option>
+            <option>工務店・建設業</option>
+            <option>クリニック・整体院</option>
+            <option>美容室・エステ</option>
+            <option>小売業</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <textarea placeholder="補助金について詳しく知りたい、申請できるか確認したい など、お気軽にご記入ください。"></textarea>
+        </div>
+        <button type="submit" class="form-submit">無料相談を申し込む</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo"><img src="KAKEHASHI.png" alt="KAKEHASHI" style="height:50px; filter:brightness(0) invert(1); opacity:0.9;"></div>
+  <div class="footer-info">
+    代表：西城直也<br>
+    〒981-3133 宮城県仙台市泉区七北田字東裏30<br>
+    TEL：080-6975-8111　MAIL：sales.agency1001@gmail.com
+  </div>
+  <div class="copy">© 2025 KAKEHASHI All Rights Reserved.</div>
+</footer>
+
+<script>
+  // スムーススクロール
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // フォーム送信（デモ）
+  document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('お問い合わせありがとうございます。\n2営業日以内にご連絡いたします。');
+  });
+</script>
+
+</body>
+</html>
