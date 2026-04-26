@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAKEHASHI｜補助金申請・HP制作・Instagram運用</title>
+  <style>
+    :root {
+      --blue-dark: #0d2b6b;
+      --blue-mid: #1a4fa8;
+      --blue-light: #3a8fe8;
+      --blue-pale: #e8f2fd;
+      --gold: #c9a227;
+      --green: #06c755;
+      --pink: #e91e8c;
+      --gray: #5a5a6e;
+      --light: #f7f9fc;
+      --white: #ffffff;
+      --text: #1a1a2e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── ナビ ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(13,43,107,0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+    }
+
+    nav .logo img {
+      height: 38px;
+      mix-blend-mode: screen;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav ul a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color .2s;
+    }
+
+    nav ul a:hover { color: #7ec8f4; }
+
+    .nav-cta {
+      background: var(--gold);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 700 !important;
+    }
+
+    /* ── ヒーロー ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #071a4a 0%, #0d3580 50%, #1a6ec7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 60% 40%, rgba(58,143,232,0.2) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,162,39,0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      padding: 6px 22px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .accent { color: #7ec8f4; }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.05rem;
+      margin-bottom: 48px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* サービスカード（ヒーロー内） */
+    .hero-services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-service {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .hero-service:hover { background: rgba(255,255,255,0.14); }
+
+    .hero-service .s-icon { font-size: 2rem; margin-bottom: 10px; }
+    .hero-service .s-name { font-size: 0.95rem; font-weight: 800; color: white; margin-bottom: 6px; }
+    .hero-service .s-desc { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+    .hero-service .s-price { font-size: 0.85rem; color: var(--gold); font-weight: 700; margin-top: 8px; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.4);
+      border-bottom: 2px solid rgba(255,255,255,0.4);
+      transform: rotate(45deg);
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(4px); }
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: white;
+      padding: 16px 44px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(201,162,39,0.5);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,162,39,0.6);
+    }
+
+    /* ── 共通 ── */
+    section { padding: 90px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { text-align: center; font-size: 0.78rem; letter-spacing: 4px; color: var(--blue-light); font-weight: 700; margin-bottom: 12px; }
+    .section-title { text-align: center; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; color: var(--blue-dark); line-height: 1.4; margin-bottom: 16px; }
+    .section-desc { text-align: center; color: var(--gray); max-width: 580px; margin: 0 auto 56px; font-size: 0.96rem; }
+
+    /* ── 課題セクション ── */
+    #problem { background: var(--light); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .problem-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px 28px;
+      border-left: 4px solid var(--blue-light);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .problem-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .problem-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .problem-arrow {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--blue-light);
+      margin-bottom: 24px;
+    }
+
+    .problem-solution {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .problem-solution h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .problem-solution p {
+      opacity: 0.85;
+      font-size: 0.96rem;
+    }
+
+    /* ── サービス詳細 ── */
+    #services { background: white; }
+
+    .service-block {
+      margin-bottom: 64px;
+      background: var(--light);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+
+    .service-block:last-child { margin-bottom: 0; }
+
+    .service-header {
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .service-header.blue { background: linear-gradient(135deg, #071a4a, #1a4fa8); }
+    .service-header.green { background: linear-gradient(135deg, #065f46, #059669); }
+    .service-header.pink { background: linear-gradient(135deg, #831843, #db2777); }
+
+    .service-header .s-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+    }
+
+    .service-header .s-info { flex: 1; }
+    .service-header .s-label { font-size: 0.75rem; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+    .service-header .s-title { font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 4px; }
+    .service-header .s-sub { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+    .service-header .s-tag { background: rgba(255,255,255,0.15); color: white; font-size: 0.85rem; font-weight: 700; padding: 8px 20px; border-radius: 20px; white-space: nowrap; }
+
+    .service-body { padding: 40px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+
+    .service-features { display: flex; flex-direction: column; gap: 12px; }
+    .feature-item { display: flex; align-items: flex-start; gap: 12px; font-size: 0.92rem; color: var(--gray); }
+    .feature-item .check { color: var(--blue-mid); font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+
+    .service-price-box { background: white; border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .price-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--gray); margin-bottom: 8px; }
+    .price-val { font-size: 2rem; font-weight: 900; color: var(--blue-dark); line-height: 1; margin-bottom: 4px; }
+    .price-note-sm { font-size: 0.78rem; color: var(--gray); margin-bottom: 16px; }
+    .price-items { display: flex; flex-direction: column; gap: 8px; }
+    .price-item { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #e8eef8; color: var(--gray); }
+    .price-item:last-child { border-bottom: none; }
+    .price-item .pi-val { font-weight: 700; color: var(--text); }
+
+    /* ── サービスフロー ── */
+    #flow { background: var(--light); }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      width: 2px;
+      height: calc(100% - 40px);
+      background: linear-gradient(to bottom, var(--blue-light), transparent);
+    }
+
+    .flow-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(26,79,168,0.35);
+      z-index: 1;
+      position: relative;
+    }
+
+    .flow-num span {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .flow-content {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .flow-content h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .flow-content p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ── 強み ── */
+    #strength { background: white; }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .strength-card {
+      border-radius: 16px;
+      padding: 36px 28px;
+      background: linear-gradient(135deg, #f0f6ff, #e8f2fd);
+      border: 1px solid #d0e4f8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strength-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(58,143,232,0.15), transparent);
+    }
+
+    .strength-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(26,79,168,0.12);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .strength-card h3 {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+    }
+
+    .strength-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ── FAQ ── */
+    #faq { background: var(--light); }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px 28px;
+    }
+
+    .faq-q .q-label {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--blue-mid);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .faq-q h3 {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      flex: 1;
+    }
+
+    .faq-a {
+      padding: 0 28px 24px 70px;
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    /* ── CTA ── */
+    #contact { background: linear-gradient(135deg, #071a4a, #0d3580); }
+
+    #contact .section-title { color: white; }
+    #contact .section-desc { color: rgba(255,255,255,0.7); }
+    #contact .section-label { color: #7ec8f4; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .contact-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .contact-card h3 { font-size: 1rem; font-weight: 800; color: white; margin-bottom: 6px; }
+    .contact-card p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+    .contact-card .val { font-size: 1.05rem; font-weight: 800; color: white; word-break: break-all; }
+
+    .line-btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-weight: 800;
+      padding: 10px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    /* フォーム */
+    .contact-form {
+      max-width: 700px;
+      margin: 48px auto 0;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 48px 40px;
+    }
+
+    .contact-form h3 {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 6px;
+    }
+
+    .form-group .req {
+      color: #f87171;
+      margin-left: 4px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.93rem;
+      font-family: inherit;
+      transition: border-color .2s;
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group select option {
+      background: var(--blue-dark);
+      color: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #7ec8f4;
+    }
+
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    .form-submit {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 18px 60px;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: 2px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 18px rgba(201,162,39,0.45);
+      font-family: inherit;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,162,39,0.55);
+    }
+
+    /* ── フッター ── */
+    footer {
+      background: #050e2a;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 36px 20px;
+    }
+
+    footer img { height: 44px; mix-blend-mode: screen; margin-bottom: 12px; }
+    footer .info { font-size: 0.82rem; line-height: 1.9; }
+    footer .copy { margin-top: 14px; font-size: 0.75rem; opacity: .5; }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      nav { padding: 12px 20px; }
+      .hero-services { grid-template-columns: 1fr; }
+      .service-body { grid-template-columns: 1fr; }
+      .service-header { flex-direction: column; }
+      .flow-step { grid-template-columns: 60px 1fr; }
+      .flow-num { width: 60px; height: 60px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="logo"><img src="KAKEHASHI.png" alt="KAKEHASHI"></div>
+  <ul>
+    <li><a href="#problem">お悩み</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#flow">流れ</a></li>
+    <li><a href="#strength">強み</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+    <li><a href="#contact" class="nav-cta">無料相談</a></li>
+  </ul>
+</nav>
+
+<!-- ヒーロー -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">仙台の小規模事業者専門</div>
+    <h1 class="hero-title">
+      集客の悩みを<br>
+      <span class="accent">まとめてお任せください。</span>
+    </h1>
+    <p class="hero-sub">
+      補助金申請サポート・HP制作・Instagram運用代行。<br>
+      3つのサービスを組み合わせて、売上アップを最短ルートで実現します。
+    </p>
+    <div class="hero-services">
+      <div class="hero-service">
+        <div class="s-icon">📋</div>
+        <div class="s-name">補助金申請サポート</div>
+        <div class="s-desc">持続化補助金を活用して<br>費用の2/3を国が負担</div>
+        <div class="s-price">着手金2万円＋成功報酬15%</div>
+      </div>
+      <div class="hero-service">
+        <div class="s-icon">💻</div>
+        <div class="s-name">HP・LP制作</div>
+        <div class="s-desc">集客に強い<br>プロ品質のサイト制作</div>
+        <div class="s-price">10万円〜</div>
+      </div>
+      <div class="hero-service">
+        <div class="s-icon">📸</div>
+        <div class="s-name">Instagram運用代行</div>
+        <div class="s-desc">投稿・集客まで<br>まるごとお任せ</div>
+        <div class="s-price">月3万円〜</div>
+      </div>
+    </div>
+    <a href="#contact" class="btn-primary">無料相談はこちら</a>
+  </div>
+  <div class="scroll-hint">SCROLL<div class="scroll-arrow"></div></div>
+</section>
+
+<!-- 課題 -->
+<section id="problem">
+  <div class="container">
+    <div class="section-label">PROBLEM</div>
+    <h2 class="section-title">こんなお悩みはありませんか？</h2>
+    <p class="section-desc">集客・Webに関する悩みを抱えたまま、一歩踏み出せない事業者様が多くいらっしゃいます。</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">📄</div>
+        <h3>補助金があるのは知っているが、申請が複雑で手が出せない</h3>
+        <p>書類の多さや手続きの煩雑さから、本業の合間では対応しきれず、結局諦めてしまっている。</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🌐</div>
+        <h3>ホームページが古いまま。でも費用も時間もかかりそうで…</h3>
+        <p>「そろそろ作り直したい」と思いつつ、どこに頼めばいいかわからず、ずっと後回しになっている。</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📱</div>
+        <h3>InstagramなどSNSで集客したいが、何を投稿すればいいかわからない</h3>
+        <p>始めてみたものの続かない、フォロワーが増えない、投稿のネタが尽きてしまった。</p>
+      </div>
+    </div>
+    <div class="problem-arrow">↓</div>
+    <div class="problem-solution">
+      <h3>KAKEHASHIが、すべて解決します。</h3>
+      <p>補助金・HP制作・Instagram運用の3つをワンストップで対応。<br>事業主様は本業に集中していただくだけで大丈夫です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- サービス詳細 -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">SERVICES</div>
+    <h2 class="section-title">3つのサービス</h2>
+    <p class="section-desc">それぞれ単体でも、組み合わせてもご利用いただけます。</p>
+
+    <!-- 補助金 -->
+    <div class="service-block">
+      <div class="service-header blue">
+        <div class="s-num">01</div>
+        <div class="s-info">
+          <div class="s-label">SUBSIDY SUPPORT</div>
+          <div class="s-title">補助金申請サポート</div>
+          <div class="s-sub">持続化補助金｜相談〜申請まで一貫対応</div>
+        </div>
+        <div class="s-tag">行政書士と連携</div>
+      </div>
+      <div class="service-body">
+        <div class="service-features">
+          <div class="feature-item"><span class="check">✓</span>無料相談・ヒアリングから対応</div>
+          <div class="feature-item"><span class="check">✓</span>対象経費の最大2/3を国が補助</div>
+          <div class="feature-item"><span class="check">✓</span>行政書士が書類作成・申請を代行</div>
+          <div class="feature-item"><span class="check">✓</span>商工会議所への対応もサポート</div>
+          <div class="feature-item"><span class="check">✓</span>実績報告書の作成まで一貫対応</div>
+          <div class="feature-item"><span class="check">✓</span>不採択の場合は追加費用ゼロ</div>
+        </div>
+        <div class="service-price-box">
+          <div class="price-label">料金</div>
+          <div class="price-val">着手金 ¥20,000</div>
+          <div class="price-note-sm">＋ 補助金入金額の15%（成功報酬）</div>
+          <div class="price-items">
+            <div class="price-item"><span>初回相談</span><span class="pi-val">無料</span></div>
+            <div class="price-item"><span>着手金</span><span class="pi-val">20,000円</span></div>
+            <div class="price-item"><span>成功報酬</span><span class="pi-val">入金額の15%</span></div>
+            <div class="price-item"><span>不採択時の追加費用</span><span class="pi-val">ゼロ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HP制作 -->
+    <div class="service-block">
+      <div class="service-header green">
+        <div class="s-num">02</div>
+        <div class="s-info">
+          <div class="s-label">WEB DESIGN</div>
+          <div class="s-title">HP・LP制作</div>
+          <div class="s-sub">集客に強いプロ品質のWebサイトを制作</div>
+        </div>
+        <div class="s-tag">補助金活用可能</div>
+      </div>
+      <div class="service-body">
+        <div class="service-features">
+          <div class="feature-item"><span class="check">✓</span>ヒアリングから納品まで一貫対応</div>
+          <div class="feature-item"><span class="check">✓</span>スマホ対応（レスポンシブ）標準装備</div>
+          <div class="feature-item"><span class="check">✓</span>問い合わせフォーム設置</div>
+          <div class="feature-item"><span class="check">✓</span>Google Map・SNS連携</div>
+          <div class="feature-item"><span class="check">✓</span>補助金を活用すれば自己負担1/3以下に</div>
+          <div class="feature-item"><span class="check">✓</span>修正2回まで無料対応</div>
+        </div>
+        <div class="service-price-box">
+          <div class="price-label">料金プラン</div>
+          <div class="price-items">
+            <div class="price-item"><span>LP（1ページ）</span><span class="pi-val">10〜15万円</span></div>
+            <div class="price-item"><span>スタンダード（5〜8P）</span><span class="pi-val">20〜35万円</span></div>
+            <div class="price-item"><span>制作期間</span><span class="pi-val">7〜14日</span></div>
+            <div class="price-item"><span>補助金活用時の自己負担</span><span class="pi-val">約1/3</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="service-block">
+      <div class="service-header pink">
+        <div class="s-num">03</div>
+        <div class="s-info">
+          <div class="s-label">SNS MANAGEMENT</div>
+          <div class="s-title">Instagram運用代行</div>
+          <div class="s-sub">投稿作成から集客まで、まるごとお任せ</div>
+        </div>
+        <div class="s-tag">月額・継続収入</div>
+      </div>
+      <div class="service-body">
+        <div class="service-features">
+          <div class="feature-item"><span class="check">✓</span>投稿画像・キャプションの作成</div>
+          <div class="feature-item"><span class="check">✓</span>ハッシュタグ選定・最適化</div>
+          <div class="feature-item"><span class="check">✓</span>ターゲットへのフォロー・いいね</div>
+          <div class="feature-item"><span class="check">✓</span>月次レポート提出</div>
+          <div class="feature-item"><span class="check">✓</span>プロフィール・ハイライト整備</div>
+          <div class="feature-item"><span class="check">✓</span>飲食・工務店・サロン専門</div>
+        </div>
+        <div class="service-price-box">
+          <div class="price-label">月額料金プラン</div>
+          <div class="price-items">
+            <div class="price-item"><span>ライト（投稿3回/月）</span><span class="pi-val">30,000円</span></div>
+            <div class="price-item"><span>スタンダード（投稿8回/月）</span><span class="pi-val">50,000円</span></div>
+            <div class="price-item"><span>プレミアム（投稿12回＋DM）</span><span class="pi-val">80,000円</span></div>
+            <div class="price-item"><span>契約期間</span><span class="pi-val">3ヶ月〜</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- サービスの流れ -->
+<section id="flow">
+  <div class="container">
+    <div class="section-label">FLOW</div>
+    <h2 class="section-title">サービスの流れ</h2>
+    <p class="section-desc">お問い合わせから完成・サポートまで、すべてKAKEHASHIが一貫対応します。</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1<span>STEP</span></div>
+        <div class="flow-content">
+          <h3>無料相談・ヒアリング</h3>
+          <p>お電話・メール・LINEからお気軽にご連絡ください。現在の状況・課題・ご要望をヒアリングし、最適なサービスをご提案します。どのサービスが合うかわからない方もお気軽にどうぞ。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2<span>STEP</span></div>
+        <div class="flow-content">
+          <h3>プランご提案・お見積り</h3>
+          <p>ヒアリング内容をもとに、最適なサービスの組み合わせ・プラン・お見積りをご提示します。補助金を活用できる場合は、申請スケジュールも合わせてご説明します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3<span>STEP</span></div>
+        <div class="flow-content">
+          <h3>ご契約・サービス開始</h3>
+          <p>内容にご納得いただいた後、ご契約へ。補助金申請サポートは行政書士と連携して書類作成へ進みます。HP制作・Instagram運用は担当者がヒアリングを重ねながら進行します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4<span>STEP</span></div>
+        <div class="flow-content">
+          <h3>実施・確認・修正</h3>
+          <p>制作物の途中確認や修正対応を丁寧に行います。補助金申請は審査期間中もご質問に随時対応。Instagram運用は毎月の投稿スケジュールをご確認いただきながら進めます。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5<span>STEP</span></div>
+        <div class="flow-content">
+          <h3>完成・納品・継続サポート</h3>
+          <p>HP納品・補助金採択通知・Instagram運用開始後も安心のアフターサポート。補助金は実績報告書の提出まで、Instagram運用は月次レポートで効果を可視化しながら継続します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 強み -->
+<section id="strength">
+  <div class="container">
+    <div class="section-label">STRENGTH</div>
+    <h2 class="section-title">KAKEHASHIが選ばれる理由</h2>
+    <p class="section-desc">補助金・Web制作・SNS運用をワンストップで。事業主様の手間を最小限にします。</p>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <div class="strength-num">01</div>
+        <h3>3つのサービスをワンストップで対応</h3>
+        <p>補助金申請・HP制作・Instagram運用を1社でまとめて依頼できます。複数の業者に相談する手間がなく、一貫した戦略で集客を支援します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">02</div>
+        <h3>行政書士と連携した安心の体制</h3>
+        <p>補助金の書類作成・申請業務は提携行政書士が担当。法的に適正な手続きで確実に申請します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">03</div>
+        <h3>補助金で制作費の負担を大幅軽減</h3>
+        <p>HP制作やInstagram広告費用を補助金でまかなえる場合があります。うまく組み合わせることで、自己負担を最小限に抑えながら集客強化を実現できます。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">04</div>
+        <h3>飲食・工務店・サロンに精通</h3>
+        <p>各業種の特性を踏まえたHP制作・SNS運用・補助金申請が可能。業種に合った採択率の高い申請内容と、反応の取れる投稿をご提案します。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">05</div>
+        <h3>わかりやすい説明と丁寧な対応</h3>
+        <p>補助金の仕組みからSNSの運用方針まで、専門用語を使わずわかりやすくご説明します。初めての方も安心してお任せください。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-num">06</div>
+        <h3>オンライン対応でエリア不問</h3>
+        <p>宮城県内はもちろん、オンライン会議・メール・LINEでの対応も可能。お気軽にご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 代表挨拶 -->
+<section id="about" style="background: linear-gradient(135deg, #f0f6ff, #e8f2fd); padding: 90px 20px;">
+  <div class="container">
+    <div class="section-label">REPRESENTATIVE</div>
+    <h2 class="section-title">代表挨拶</h2>
+    <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); display: grid; grid-template-columns: 340px 1fr;">
+      <div style="position: relative; overflow: hidden;">
+        <img src="DSC09131.jpg" alt="代表 西城直也" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(13,43,107,0.85)); padding: 24px 20px 20px;">
+          <div style="color: white; font-size: 1.15rem; font-weight: 900; letter-spacing: 1px;">西城 直也</div>
+          <div style="color: rgba(255,255,255,0.8); font-size: 0.8rem; margin-top: 2px;">KAKEHASHI 代表</div>
+        </div>
+      </div>
+      <div style="padding: 48px 44px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-size: 0.78rem; letter-spacing: 3px; color: var(--blue-light); font-weight: 700; margin-bottom: 16px;">MESSAGE</div>
+        <h3 style="font-size: 1.3rem; font-weight: 900; color: var(--blue-dark); line-height: 1.5; margin-bottom: 24px;">「何から始めればいいかわからない」を、<br>「これで売上が変わった」に。</h3>
+        <div style="color: var(--gray); font-size: 0.92rem; line-height: 2; border-left: 3px solid var(--blue-light); padding-left: 20px;">
+          <p style="margin-bottom: 16px;">
+            補助金・HP・SNSと、集客に使えるツールは増えているのに、「何から手をつければいいかわからない」という事業者様が多くいらっしゃいます。
+          </p>
+          <p style="margin-bottom: 16px;">
+            KAKEHASHIは、そんな方々の「橋渡し」になりたいという想いで立ち上げました。補助金で費用を抑えながら、HPとSNSで集客を仕組み化するお手伝いをします。
+          </p>
+          <p>
+            まずは気軽にLINEでご連絡ください。一緒に最初の一歩を踏み出しましょう。
+          </p>
+        </div>
+        <div style="margin-top: 28px; display: flex; align-items: center; gap: 16px;">
+          <a href="#contact" style="background: var(--blue-mid); color: white; padding: 12px 28px; border-radius: 4px; font-weight: 800; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px;">無料相談はこちら</a>
+          <div style="font-size: 0.8rem; color: var(--gray);">お気軽にどうぞ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">よくある質問</h2>
+    <p class="section-desc">お客様からよくいただくご質問をまとめました。</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>どのサービスから始めればいいですか？</h3>
+        </div>
+        <div class="faq-a">まずは無料相談でヒアリングさせていただきます。現在の状況・予算・優先順位をお聞きしたうえで、最適なサービスをご提案しますので、お気軽にご連絡ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>補助金でHP制作やInstagram広告の費用はまかなえますか？</h3>
+        </div>
+        <div class="faq-a">持続化補助金では、ホームページ制作費・広告費（チラシ・Web広告）が補助対象になる場合があります。うまく組み合わせることで、自己負担を大幅に抑えることが可能です。詳しくは無料相談でご確認ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>HP制作はどのくらいで完成しますか？</h3>
+        </div>
+        <div class="faq-a">1ページのLPであれば7〜10日、5〜8ページのスタンダードサイトであれば2〜4週間が目安です。ヒアリング・修正期間を含めたスケジュールを事前にご説明します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>Instagramのアカウントがまだない状態でも大丈夫ですか？</h3>
+        </div>
+        <div class="faq-a">はい、問題ありません。アカウント開設・プロフィール設定・初期整備からサポートいたします。ゼロからスタートする事業者様も多くご依頼いただいています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>補助金が不採択になった場合、費用はかかりますか？</h3>
+        </div>
+        <div class="faq-a">補助金申請サポートは着手金（20,000円）のみで、追加費用は一切かかりません。成功報酬は採択・入金が確認できた時点でのみお支払いいただきます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="q-label">Q.</span>
+          <h3>宮城県外でも対応してもらえますか？</h3>
+        </div>
+        <div class="faq-a">オンライン（Zoom・電話・LINE）でご対応できますので、全国からご相談いただけます。お気軽にお問い合わせください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">CONTACT</div>
+    <h2 class="section-title">まずは無料相談から</h2>
+    <p class="section-desc">どのサービスが合うかわからない方もお気軽にどうぞ。一緒に最適なプランをご提案します。</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon">💬</div>
+        <h3>LINEで相談</h3>
+        <p>一番気軽にご相談できます</p>
+        <a href="https://line.me/R/ti/p/@550xodbg" target="_blank" class="line-btn">友だち追加する</a>
+        <div><img src="https://qr-official.line.me/gs/M_550xodbg_GW.png?oat_content=qr" style="width:90px;height:90px;border-radius:6px;"></div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📞</div>
+        <h3>お電話で相談</h3>
+        <p>平日9:00〜18:00受付</p>
+        <div class="val">080-6975-8111</div>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📧</div>
+        <h3>メールで相談</h3>
+        <p>24時間受付・2営業日以内返信</p>
+        <div class="val">sales.agency1001<br>@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Webフォームから相談する</h3>
+      <form action="https://formspree.io/f/mdayzpzk" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>お名前<span class="req">*</span></label>
+            <input type="text" placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>会社名・屋号</label>
+            <input type="text" placeholder="○○食堂">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>電話番号<span class="req">*</span></label>
+            <input type="tel" placeholder="080-0000-0000">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス<span class="req">*</span></label>
+            <input type="email" placeholder="example@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ご興味のあるサービス</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>補助金申請サポート</option>
+            <option>HP・LP制作</option>
+            <option>Instagram運用代行</option>
+            <option>複数のサービスをまとめて相談したい</option>
+            <option>まだ決まっていない</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>業種</label>
+          <select>
+            <option value="">選択してください</option>
+            <option>飲食店</option>
+            <option>工務店・建設業</option>
+            <option>整体院・接骨院</option>
+            <option>美容室・エステ</option>
+            <option>小売業</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <textarea placeholder="気になるサービスや現在のお悩みなど、お気軽にご記入ください。"></textarea>
+        </div>
+        <button type="submit" class="form-submit">無料相談を申し込む</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <img src="KAKEHASHI.png" alt="KAKEHASHI">
+  <div class="info">
+    代表：西城直也｜〒981-3133 宮城県仙台市泉区七北田字東裏30<br>
+    TEL：080-6975-8111　MAIL：sales.agency1001@gmail.com
+  </div>
+  <div class="copy">© 2025 KAKEHASHI All Rights Reserved.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+</script>
+
+</body>
+</html>
