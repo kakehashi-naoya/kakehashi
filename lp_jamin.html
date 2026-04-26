@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAMIN ジャマン｜仙台泉中央 フランス菓子</title>
+  <meta name="description" content="パリ三ツ星出身のシェフパティシエが作る、本格フランス菓子。仙台市泉区・泉中央駅徒歩10分。ケーキ20種以上、焼き菓子30種。¥500前後から。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:   #FFFDF8;
+      --ivory:   #F7F2EA;
+      --stone:   #EDE5D8;
+      --gold:    #B8975A;
+      --gold-lt: #D4B87A;
+      --plum:    #2C1A2E;
+      --plum-lt: #4A3050;
+      --rose:    #C9907A;
+      --rose-lt: #E8C5B8;
+      --text:    #3D2C2C;
+      --muted:   #9A8070;
+      --white:   #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Serif JP', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* =========== HEADER =========== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,253,248,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(184,151,90,0.2);
+      padding: 14px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo-wrap { line-height: 1; }
+    .logo-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 600;
+      color: var(--plum); letter-spacing: 6px;
+    }
+    .logo-ja {
+      font-size: 10px; color: var(--muted);
+      letter-spacing: 3px;
+      font-family: 'Noto Sans JP', sans-serif;
+      display: block; margin-top: 2px;
+    }
+    nav a {
+      color: var(--text); text-decoration: none;
+      margin-left: 28px; font-size: 12px;
+      letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--gold); }
+    .nav-ig {
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff !important; padding: 7px 16px;
+      font-size: 11px !important;
+    }
+
+    /* =========== HERO =========== */
+    #hero {
+      min-height: 100vh;
+      background: var(--plum);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 40%, rgba(184,151,90,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 70%, rgba(201,144,122,0.10) 0%, transparent 50%),
+        linear-gradient(150deg, #1E1020 0%, #2C1A2E 50%, #1A1020 100%);
+    }
+    /* 繊細な花模様装飾 */
+    .hero-deco {
+      position: absolute;
+      right: -60px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 400px;
+      opacity: 0.04; color: var(--gold);
+      pointer-events: none; user-select: none;
+      line-height: 1;
+    }
+    .hero-deco2 {
+      position: absolute;
+      left: -30px; bottom: -60px;
+      font-size: 250px;
+      opacity: 0.03; color: var(--rose);
+      pointer-events: none; user-select: none;
+      line-height: 1;
+    }
+    /* 縦線装飾 */
+    .hero-line {
+      position: absolute; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(184,151,90,0.3), transparent);
+    }
+    .hero-line:nth-child(1) { left: 20%; }
+    .hero-line:nth-child(2) { left: 80%; }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px; max-width: 700px;
+    }
+    .hero-since {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; letter-spacing: 8px;
+      color: var(--gold); margin-bottom: 30px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-since::after {
+      content: ''; flex: 1; max-width: 60px;
+      height: 1px; background: var(--gold); opacity: 0.5;
+    }
+    .hero-catch {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.3;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .hero-catch-ja {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 300; color: rgba(255,255,255,0.75);
+      letter-spacing: 0.2em;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+    .hero-catch-ja em {
+      color: var(--gold-lt); font-style: normal; font-weight: 500;
+    }
+    .hero-desc {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      letter-spacing: 2px; margin-bottom: 48px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300; line-height: 2;
+    }
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn-gold {
+      background: var(--gold); color: #fff;
+      padding: 14px 38px; font-size: 13px;
+      letter-spacing: 3px; text-decoration: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500; transition: all .3s;
+      display: inline-block;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,0.7);
+      padding: 14px 38px; font-size: 13px;
+      letter-spacing: 3px; text-decoration: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      border: 1px solid rgba(255,255,255,0.25); transition: all .3s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+    /* =========== SECTION BASE =========== */
+    section { padding: 100px 20px; }
+    .section-head { text-align: center; margin-bottom: 70px; }
+    .section-fr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; letter-spacing: 8px;
+      color: var(--gold); display: block; margin-bottom: 14px;
+      font-style: italic;
+    }
+    .section-ja {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700; color: var(--plum);
+      letter-spacing: 0.08em;
+    }
+    .section-line {
+      width: 36px; height: 1px;
+      background: var(--gold); margin: 18px auto 0;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* =========== STORY / CHEF =========== */
+    #story { background: var(--white); }
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; max-width: 1000px; margin: 0 auto;
+      align-items: center;
+    }
+    .story-visual {
+      position: relative;
+    }
+    .story-visual-box {
+      background: linear-gradient(145deg, var(--stone), var(--ivory));
+      aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 100px;
+      position: relative; overflow: hidden;
+    }
+    .story-visual-box::before {
+      content: '';
+      position: absolute; inset: 16px;
+      border: 1px solid rgba(184,151,90,0.3);
+      pointer-events: none;
+    }
+    .story-badge {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--plum);
+      color: var(--gold-lt);
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .story-badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 600; line-height: 1;
+    }
+    .story-badge-text {
+      font-size: 10px; letter-spacing: 1px;
+      font-family: 'Noto Sans JP', sans-serif;
+      margin-top: 3px;
+    }
+    .story-text h2 {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700; color: var(--plum);
+      margin-bottom: 24px; line-height: 1.5;
+      letter-spacing: 0.05em;
+    }
+    .story-text h2 em {
+      color: var(--gold); font-style: normal;
+    }
+    .story-text p {
+      font-size: 15px; color: var(--text);
+      line-height: 2.2; margin-bottom: 18px;
+      font-weight: 300;
+    }
+    .story-label {
+      display: inline-block;
+      background: var(--ivory);
+      border-left: 3px solid var(--gold);
+      padding: 10px 18px;
+      font-size: 13px; color: var(--muted);
+      font-family: 'Noto Sans JP', sans-serif;
+      margin-top: 10px;
+    }
+
+    /* =========== SWEETS / FEATURES =========== */
+    #features { background: var(--ivory); }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 960px; margin: 0 auto;
+      background: var(--stone);
+    }
+    .feat-card {
+      background: var(--white);
+      padding: 52px 36px;
+      text-align: center;
+      transition: background .3s;
+    }
+    .feat-card:hover { background: var(--cream); }
+    .feat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300;
+      color: rgba(184,151,90,0.25); line-height: 1;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .feat-icon { font-size: 36px; margin-bottom: 18px; display: block; }
+    .feat-title {
+      font-size: 17px; font-weight: 700;
+      color: var(--plum); margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .feat-text {
+      font-size: 13px; color: var(--muted);
+      line-height: 2; font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    /* =========== MENU =========== */
+    #menu { background: var(--cream); }
+    .menu-intro {
+      text-align: center; margin-bottom: 60px;
+      font-size: 15px; color: var(--muted);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300; line-height: 2;
+    }
+    .menu-tabs {
+      display: flex; gap: 0; justify-content: center;
+      margin-bottom: 48px; max-width: 600px; margin: 0 auto 48px;
+    }
+    .menu-tab {
+      flex: 1; padding: 14px;
+      text-align: center; cursor: pointer;
+      font-size: 13px; letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+      border: 1px solid var(--stone);
+      color: var(--muted);
+      background: var(--white);
+      transition: all .3s;
+    }
+    .menu-tab.active, .menu-tab:hover {
+      background: var(--plum); color: var(--gold-lt);
+      border-color: var(--plum);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .menu-item {
+      background: var(--white);
+      border: 1px solid var(--stone);
+      overflow: hidden;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .menu-item:hover {
+      box-shadow: 0 8px 30px rgba(44,26,46,0.08);
+      transform: translateY(-3px);
+    }
+    .menu-item-img {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; position: relative;
+    }
+    .menu-item-img-cake { background: linear-gradient(135deg, #F8F0E8, #EDD8C8); }
+    .menu-item-img-choco { background: linear-gradient(135deg, #3C2018, #5A3020); }
+    .menu-item-img-fromage { background: linear-gradient(135deg, #F8EDD4, #EED8B8); }
+    .menu-item-img-mont { background: linear-gradient(135deg, #4A3828, #6A5030); }
+    .menu-item-img-crepe { background: linear-gradient(135deg, #F5E8D8, #EEDCC8); }
+    .menu-item-img-焼 { background: linear-gradient(135deg, #EEE4D4, #E4D4BC); }
+    .menu-ribbon {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--rose); color: #fff;
+      font-size: 10px; padding: 3px 10px;
+      letter-spacing: 1px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .menu-ribbon-gold {
+      background: var(--gold);
+    }
+    .menu-item-body { padding: 22px 24px; }
+    .menu-item-fr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; color: var(--gold);
+      letter-spacing: 3px; margin-bottom: 6px;
+      font-style: italic;
+    }
+    .menu-item-name {
+      font-size: 17px; font-weight: 700;
+      color: var(--plum); margin-bottom: 8px;
+    }
+    .menu-item-desc {
+      font-size: 12px; color: var(--muted);
+      line-height: 1.8; margin-bottom: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+    .menu-item-price {
+      font-size: 20px; font-weight: 700; color: var(--rose);
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .menu-item-price span { font-size: 12px; color: var(--muted); margin-left: 2px; }
+
+    /* =========== APPEAL =========== */
+    #appeal {
+      background: var(--plum);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .appeal-fr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; letter-spacing: 8px;
+      color: var(--gold-lt); margin-bottom: 24px;
+      font-style: italic; display: block;
+    }
+    .appeal-big {
+      font-size: clamp(22px, 4vw, 44px);
+      font-weight: 300; color: #fff;
+      line-height: 1.7; letter-spacing: 0.1em;
+    }
+    .appeal-big strong { color: var(--gold-lt); font-weight: 700; }
+    .appeal-big em { font-style: italic; color: var(--rose-lt); }
+    .appeal-divider {
+      width: 60px; height: 1px;
+      background: var(--gold); margin: 36px auto;
+      opacity: 0.5;
+    }
+    .appeal-tags {
+      display: flex; gap: 10px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .appeal-tag {
+      border: 1px solid rgba(184,151,90,0.4);
+      color: rgba(255,255,255,0.65);
+      font-size: 12px; padding: 7px 18px;
+      letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* =========== INSTAGRAM =========== */
+    #instagram { background: var(--ivory); }
+    .ig-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 180px);
+      gap: 8px;
+      max-width: 840px; margin: 0 auto 48px;
+    }
+    .ig-cell {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; overflow: hidden;
+      position: relative; cursor: pointer;
+      transition: opacity .3s;
+    }
+    .ig-cell:hover { opacity: 0.85; }
+    .ig-cell:nth-child(1) {
+      grid-column: 1; grid-row: 1;
+      background: linear-gradient(135deg, #F5EAD8, #E8D4C0);
+    }
+    .ig-cell:nth-child(2) {
+      grid-column: 2; grid-row: 1;
+      background: linear-gradient(135deg, #F0E8F5, #DDD0E8);
+    }
+    .ig-cell:nth-child(3) {
+      grid-column: 3; grid-row: 1 / 3;
+      font-size: 80px;
+      background: linear-gradient(135deg, #EEE4F0, #D8CCE0);
+    }
+    .ig-cell:nth-child(4) {
+      grid-column: 1; grid-row: 2;
+      background: linear-gradient(135deg, #F8F0E0, #EAE0D0);
+    }
+    .ig-cell:nth-child(5) {
+      grid-column: 2; grid-row: 2;
+      background: linear-gradient(135deg, #F0EAE8, #E4D8D4);
+    }
+    .ig-cta { text-align: center; }
+    .btn-ig {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff; padding: 15px 38px;
+      font-size: 13px; letter-spacing: 2px;
+      text-decoration: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: opacity .3s;
+    }
+    .btn-ig:hover { opacity: 0.88; }
+    .ig-note {
+      text-align: center; color: var(--muted);
+      font-size: 12px; margin-top: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* =========== ACCESS =========== */
+    #access { background: var(--white); }
+    .access-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 70px; max-width: 1000px; margin: 0 auto;
+      align-items: start;
+    }
+    .access-map-box {
+      background: var(--ivory);
+      border: 1px solid var(--stone);
+      aspect-ratio: 4/3;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px;
+    }
+    .access-map-box span { font-size: 40px; }
+    .access-map-box p {
+      font-size: 13px; color: var(--text);
+      text-align: center; font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500; line-height: 1.8;
+    }
+    .btn-map {
+      background: var(--plum); color: var(--gold-lt);
+      padding: 10px 26px; text-decoration: none;
+      font-size: 12px; letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: background .3s;
+    }
+    .btn-map:hover { background: var(--plum-lt); }
+    .access-note-box {
+      background: var(--ivory);
+      border-left: 2px solid var(--gold);
+      padding: 18px 22px; margin-top: 20px;
+      font-size: 13px; color: var(--muted);
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 2;
+    }
+    .info-title {
+      font-size: 20px; font-weight: 700; color: var(--plum);
+      margin-bottom: 30px; letter-spacing: 2px;
+    }
+    .info-row {
+      display: flex; align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--stone);
+    }
+    .info-label {
+      font-size: 11px; letter-spacing: 2px;
+      color: var(--muted); min-width: 80px;
+      font-family: 'Noto Sans JP', sans-serif;
+      padding-top: 2px; font-weight: 400;
+    }
+    .info-val {
+      font-size: 14px; color: var(--text);
+      line-height: 1.9; font-family: 'Noto Sans JP', sans-serif;
+    }
+    .info-val strong { color: var(--plum); font-weight: 600; }
+    .sellout-badge {
+      display: inline-block;
+      background: var(--rose); color: #fff;
+      font-size: 10px; padding: 2px 8px;
+      margin-left: 6px; vertical-align: middle;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* =========== CTA =========== */
+    #cta {
+      background: linear-gradient(135deg, var(--plum) 0%, #3A2048 100%);
+      padding: 100px 20px; text-align: center;
+    }
+    .cta-fr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; letter-spacing: 8px;
+      color: var(--gold-lt); display: block; margin-bottom: 24px;
+      font-style: italic;
+    }
+    .cta-title {
+      font-size: clamp(24px, 4vw, 44px);
+      color: #fff; font-weight: 300;
+      line-height: 1.6; margin-bottom: 16px;
+    }
+    .cta-title strong { color: var(--gold-lt); font-weight: 700; }
+    .cta-sub {
+      font-size: 14px; color: rgba(255,255,255,0.55);
+      margin-bottom: 48px; line-height: 2;
+      font-family: 'Noto Sans JP', sans-serif; font-weight: 300;
+    }
+    .cta-btns {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-tel {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold-lt);
+      padding: 14px 38px;
+      font-size: 15px; letter-spacing: 2px;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all .3s;
+    }
+    .btn-tel:hover { background: var(--gold); color: #fff; }
+
+    /* =========== FOOTER =========== */
+    footer {
+      background: #160E18;
+      padding: 56px 30px 30px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300;
+      color: var(--gold-lt); letter-spacing: 8px;
+      font-style: italic; margin-bottom: 4px;
+    }
+    .footer-sub {
+      font-size: 10px; color: rgba(255,255,255,0.25);
+      letter-spacing: 4px;
+      font-family: 'Noto Sans JP', sans-serif; margin-bottom: 28px;
+    }
+    .footer-links {
+      display: flex; gap: 24px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none; font-size: 11px;
+      letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif; transition: color .3s;
+    }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-copy {
+      font-size: 11px; color: rgba(255,255,255,0.15);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* =========== DEMO BADGE =========== */
+    .demo-badge {
+      position: fixed; bottom: 20px; right: 20px;
+      background: rgba(44,26,46,0.92);
+      border: 1px solid var(--gold);
+      color: var(--gold-lt);
+      padding: 12px 20px;
+      font-size: 11px; letter-spacing: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+      z-index: 999; backdrop-filter: blur(8px);
+    }
+    .demo-badge strong { display: block; font-size: 13px; margin-bottom: 2px; }
+
+    /* =========== RESPONSIVE =========== */
+    @media (max-width: 768px) {
+      header { padding: 12px 20px; }
+      nav { display: none; }
+      .hero-content { padding: 0 28px; }
+      .hero-deco, .hero-deco2 { display: none; }
+      .story-inner { grid-template-columns: 1fr; gap: 40px; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .access-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .ig-masonry { grid-template-rows: repeat(2, 130px); }
+      section { padding: 70px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrap">
+      <span class="logo-en">JAMIN</span>
+      <span class="logo-ja">ジャマン　仙台泉中央</span>
+    </div>
+    <nav>
+      <a href="#story">について</a>
+      <a href="#menu">メニュー</a>
+      <a href="#access">アクセス</a>
+      <a href="https://www.instagram.com/jamin_sendai/" target="_blank" class="nav-ig">Instagram</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-line"></div>
+    <div class="hero-line"></div>
+    <div class="hero-deco">✿</div>
+    <div class="hero-deco2">◇</div>
+    <div class="hero-content">
+      <div class="hero-since">SINCE 2005</div>
+      <h1 class="hero-catch">
+        Pâtisserie<br>Française
+      </h1>
+      <p class="hero-catch-ja">
+        <em>パリ三ツ星</em>の技が、<br>
+        この街に根付いて<em>20年。</em>
+      </p>
+      <p class="hero-desc">
+        仙台市泉区・泉中央。<br>
+        本物のフランス菓子を、気軽に。毎日でも。
+      </p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-gold">メニューを見る</a>
+        <a href="#access" class="btn-ghost">店舗情報</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY / CHEF -->
+  <section id="story">
+    <div class="section-head">
+      <span class="section-fr">Notre Histoire</span>
+      <h2 class="section-ja">JAMINについて</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="story-inner container">
+      <div class="story-visual">
+        <div class="story-visual-box">🎂</div>
+        <div class="story-badge">
+          <span class="story-badge-num">20</span>
+          <span class="story-badge-text">YEARS</span>
+        </div>
+      </div>
+      <div class="story-text">
+        <h2>
+          パリの三ツ星で磨いた技を、<br>
+          <em>仙台の日常へ。</em>
+        </h2>
+        <p>
+          オーナーシェフの大村公弘は、パリの三ツ星レストラン「JAMIN」でシェフパティシエとして研鑽を積み、2005年に仙台市泉区へ帰郷。お店の名前は、その三ツ星の名を冠しています。
+        </p>
+        <p>
+          季節ごとに変わるケーキ20種類以上、焼き菓子約30種類。本物の素材と丁寧な仕事が生み出す味は、地元の方々に長年愛され続けています。
+        </p>
+        <p>
+          「目にも楽しい、食べて美味しいお菓子を。」<br>
+          そのこだわりは、開店から20年経った今も変わりません。
+        </p>
+        <span class="story-label">
+          ※ 店名の由来：パリ三ツ星レストラン「JAMIN」
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-head">
+      <span class="section-fr">Nos Points Forts</span>
+      <h2 class="section-ja">3つのこだわり</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="feat-grid container">
+      <div class="feat-card">
+        <div class="feat-num">I</div>
+        <span class="feat-icon">🌸</span>
+        <h3 class="feat-title">旬の素材</h3>
+        <p class="feat-text">
+          季節ごとに素材を厳選。<br>
+          旬の果物や食材を活かした<br>
+          ラインナップで、<br>
+          何度来ても新しい出会いがあります。
+        </p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">II</div>
+        <span class="feat-icon">🎓</span>
+        <h3 class="feat-title">三ツ星仕込みの技</h3>
+        <p class="feat-text">
+          パリ三ツ星レストランで<br>
+          培った本物の技術と感性。<br>
+          毎日手作りのケーキは<br>
+          プロの職人技の結晶です。
+        </p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">III</div>
+        <span class="feat-icon">💰</span>
+        <h3 class="feat-title">気軽な価格</h3>
+        <p class="feat-text">
+          本格フランス菓子が<br>
+          ¥500前後から楽しめます。<br>
+          贈り物にも、日常のご褒美にも。<br>
+          毎日通いたくなる価格設定。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="section-head">
+      <span class="section-fr">Notre Menu</span>
+      <h2 class="section-ja">人気メニュー</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="menu-intro">
+      ケーキ20種類以上・焼き菓子約30種類が日替わりで並びます。<br>
+      売り切れ次第終了のため、お早めにどうぞ。
+    </p>
+    <div class="menu-grid container">
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-fromage">
+          🧀
+          <div class="menu-ribbon menu-ribbon-gold">人気</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Double Fromage</div>
+          <h3 class="menu-item-name">ドゥブルフロマージュ</h3>
+          <p class="menu-item-desc">2種のチーズを重ねた濃厚なチーズケーキ。なめらかな口溶けが後を引きます。</p>
+          <div class="menu-item-price">¥529<span>（税込）</span></div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-mont">
+          🌰
+          <div class="menu-ribbon">秋冬定番</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Mont Blanc</div>
+          <h3 class="menu-item-name">モンブラン</h3>
+          <p class="menu-item-desc">栗の風味が存分に香る、本格フレンチスタイルのモンブラン。</p>
+          <div class="menu-item-price">¥513<span>（税込）</span></div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-choco">
+          🍫
+          <div class="menu-ribbon">定番</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Gâteau Chocolat</div>
+          <h3 class="menu-item-name">ガトーショコラ</h3>
+          <p class="menu-item-desc">フランス産チョコレートを惜しみなく使った、濃密なショコラ。</p>
+          <div class="menu-item-price">¥426<span>（税込）</span></div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-crepe">
+          🥞
+          <div class="menu-ribbon menu-ribbon-gold">おすすめ</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Crêpe Mousseline</div>
+          <h3 class="menu-item-name">ふわふわクレープ</h3>
+          <p class="menu-item-desc">ふんわり軽い生地にたっぷりのクリーム。食べた瞬間ほどける幸せ。</p>
+          <div class="menu-item-price">¥469<span>（税込）</span></div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-cake">
+          🍮
+          <div class="menu-ribbon">軽い甘さ</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Choux à la Crème</div>
+          <h3 class="menu-item-name">シュークリーム</h3>
+          <p class="menu-item-desc">毎日手作りのサクサク生地とたっぷりカスタード。素朴だけど完璧な一品。</p>
+          <div class="menu-item-price">¥226<span>（税込）</span></div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-img menu-item-img-焼">
+          🫙
+          <div class="menu-ribbon">ギフトに◎</div>
+        </div>
+        <div class="menu-item-body">
+          <div class="menu-item-fr">Gâteaux Secs</div>
+          <h3 class="menu-item-name">焼き菓子各種</h3>
+          <p class="menu-item-desc">マドレーヌ、ガレットブルトンヌ、クッキーなど約30種。贈り物に大人気。</p>
+          <div class="menu-item-price" style="font-size:15px; color:var(--muted);">各種取り揃えています</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPEAL BANNER -->
+  <section id="appeal">
+    <div class="appeal-inner container" style="max-width:800px; margin:0 auto; text-align:center;">
+      <span class="appeal-fr">La Qualité Avant Tout</span>
+      <p class="appeal-big">
+        パリ三ツ星の<strong>本物の味</strong>が、<br>
+        <em>¥500前後</em>から楽しめる場所。
+      </p>
+      <div class="appeal-divider"></div>
+      <div class="appeal-tags">
+        <span class="appeal-tag"># パリ三ツ星出身シェフ</span>
+        <span class="appeal-tag"># 開店20年</span>
+        <span class="appeal-tag"># ケーキ20種以上</span>
+        <span class="appeal-tag"># 焼き菓子30種</span>
+        <span class="appeal-tag"># ¥500前後〜</span>
+        <span class="appeal-tag"># 手土産・ギフト</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="section-head">
+      <span class="section-fr">Sur Instagram</span>
+      <h2 class="section-ja">最新スイーツ情報</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="ig-masonry container">
+      <div class="ig-cell">🎂</div>
+      <div class="ig-cell">🍰</div>
+      <div class="ig-cell">✿</div>
+      <div class="ig-cell">🧁</div>
+      <div class="ig-cell">🍫</div>
+    </div>
+    <div class="ig-cta">
+      <a href="https://www.instagram.com/jamin_sendai/" target="_blank" class="btn-ig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @jamin_sendai をフォローする
+      </a>
+      <p class="ig-note">＊実際のLPでは投稿写真がリアルタイムに表示されます</p>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access">
+    <div class="section-head">
+      <span class="section-fr">Nous Trouver</span>
+      <h2 class="section-ja">アクセス</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-wrap container">
+      <div>
+        <div class="access-map-box">
+          <span>📍</span>
+          <p>仙台市泉区市名坂字町39<br>泉中央駅より徒歩10分</p>
+          <a href="https://maps.google.com/?q=JAMIN+仙台泉中央" target="_blank" class="btn-map">Googleマップで開く</a>
+        </div>
+        <div class="access-note-box">
+          🚃 泉中央駅より徒歩約10分<br>
+          🚗 すいせん通り沿い<br>
+          🅿️ 店舗西側に2台分の駐車場あり
+        </div>
+      </div>
+      <div>
+        <h3 class="info-title">店舗情報</h3>
+        <div class="info-row">
+          <span class="info-label">店名</span>
+          <span class="info-val"><strong>JAMIN（ジャマン）</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">住所</span>
+          <span class="info-val">宮城県仙台市泉区市名坂字町39</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">電話</span>
+          <span class="info-val"><strong>022-218-7622</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">営業時間</span>
+          <span class="info-val">
+            <strong>11:00 〜 19:30</strong>
+            <span class="sellout-badge">売切終了</span><br>
+            <span style="font-size:12px; color:var(--muted);">火曜〜日曜</span>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">定休日</span>
+          <span class="info-val"><strong>月曜日</strong></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">席数</span>
+          <span class="info-val">カウンター4席（テイクアウト歓迎）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">オープン</span>
+          <span class="info-val">2005年（<strong>2025年で開店20周年</strong>）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-inner container" style="max-width:700px; margin:0 auto;">
+      <span class="cta-fr">Venez nous rendre visite</span>
+      <h2 class="cta-title">
+        本物のフランス菓子を、<br>
+        <strong>仙台で。</strong>
+      </h2>
+      <p class="cta-sub">
+        毎日手作りのケーキは、早い時間に売り切れることも。<br>
+        お気に入りをお見逃しなく。最新情報はInstagramでご確認ください。
+      </p>
+      <div class="cta-btns">
+        <a href="tel:0222187622" class="btn-gold" style="font-size:16px; padding:16px 44px;">
+          📞 022-218-7622
+        </a>
+        <a href="https://www.instagram.com/jamin_sendai/" target="_blank" class="btn-tel">
+          Instagram をフォロー
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">JAMIN</div>
+    <div class="footer-sub">PÂTISSERIE FRANÇAISE — SENDAI IZUMI CHUO</div>
+    <div class="footer-links">
+      <a href="#story">について</a>
+      <a href="#features">こだわり</a>
+      <a href="#menu">メニュー</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#access">アクセス</a>
+    </div>
+    <div class="footer-copy">© 2005 JAMIN. All Rights Reserved.</div>
+  </footer>
+
+  <!-- DEMO BADGE -->
+  <div class="demo-badge">
+    <strong>📄 デモLP</strong>
+    KAKEHASHI 制作サンプル
+  </div>
+
+</body>
+</html>
