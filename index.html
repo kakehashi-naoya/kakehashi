@@ -1263,26 +1263,26 @@
         <div class="form-row">
           <div class="form-group">
             <label>お名前<span class="req">*</span></label>
-            <input type="text" placeholder="山田 太郎">
+            <input type="text" name="お名前" placeholder="山田 太郎" required>
           </div>
           <div class="form-group">
             <label>会社名・屋号</label>
-            <input type="text" placeholder="○○食堂">
+            <input type="text" name="会社名・屋号" placeholder="○○食堂">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>電話番号<span class="req">*</span></label>
-            <input type="tel" placeholder="080-0000-0000">
+            <input type="tel" name="電話番号" placeholder="080-0000-0000" required>
           </div>
           <div class="form-group">
             <label>メールアドレス<span class="req">*</span></label>
-            <input type="email" placeholder="example@email.com">
+            <input type="email" name="_replyto" placeholder="example@email.com" required>
           </div>
         </div>
         <div class="form-group">
           <label>業種</label>
-          <select>
+          <select name="業種">
             <option value="">選択してください</option>
             <option>飲食店</option>
             <option>工務店・建設業</option>
@@ -1294,8 +1294,9 @@
         </div>
         <div class="form-group">
           <label>ご相談内容</label>
-          <textarea placeholder="補助金について詳しく知りたい、申請できるか確認したい など、お気軽にご記入ください。"></textarea>
+          <textarea name="ご相談内容" placeholder="補助金について詳しく知りたい、申請できるか確認したい など、お気軽にご記入ください。"></textarea>
         </div>
+        <input type="hidden" name="_subject" value="【KAKEHASHI】Webフォームからのお問い合わせ">
         <button type="submit" class="form-submit">無料相談を申し込む</button>
       </form>
     </div>
